@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  username     String    @unique
+  password     String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  pitcoins     Int       @default(1000)
+  fantasyTeams FantasyTeam[]
+  bets         Bet[]
+  predictions  Prediction[]
+  chatHistory  ChatMessage[]
+}
+
+model FantasyTeam {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionKey   Int
+  drivers      String   // JSON array of driver numbers
+  budget       Float    @default(100.0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Bet {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionKey   Int
+  market       String   // "race_winner", "fastest_lap", "first_pit", etc.
+  driverNumber Int
+  odds         Float
+  stake        Float
+  payout       Float?
+  won          Boolean?
+  settled      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
+
+model Prediction {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionKey   Int
+  pole         Int
+  p2           Int
+  p3           Int
+  fastestLap   Int
+  dnf1         Int
+  dnf2         Int
+  points       Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model ChatMessage {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role         String   // "user" or "assistant"
+  content      String
+  createdAt    DateTime @default(now())
+}

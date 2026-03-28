@@ -1,0 +1,22 @@
+{
+  "name": "pitwall-pro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "start": "pnpm --filter backend start",
+    "lint": "pnpm -r lint",
+    "db:push": "pnpm --filter backend db:push",
+    "db:studio": "pnpm --filter backend db:studio"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
