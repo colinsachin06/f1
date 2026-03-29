@@ -1,21 +1,19 @@
 {
-  "name": "pitwall-pro",
+  "name": "pitwall-analytics",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
-    "build:frontend": "pnpm --filter frontend build",
-    "build:backend": "pnpm --filter backend build",
-    "start": "pnpm --filter backend start",
-    "lint": "pnpm -r lint",
-    "db:push": "pnpm --filter backend db:push",
-    "db:studio": "pnpm --filter backend db:studio"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend && node index.js",
+    "install:all": "npm i && cd frontend && npm i && cd ../backend && npm i",
+    "build": "cd frontend && npm run build"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
+    "pnpm": "^10.33.0",
     "typescript": "^5.4.0"
   },
-  "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18.0.0"
   }
