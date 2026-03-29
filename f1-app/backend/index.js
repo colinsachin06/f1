@@ -8,6 +8,8 @@ import predictionsRouter from './routes/predictions.js';
 import sentimentRouter from './routes/sentiment.js';
 import fantasyRouter from './routes/fantasy.js';
 import radioRouter from './routes/radio.js';
+import telemetryRouter from './routes/telemetry.js';
+import leaguesRouter from './routes/leagues.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +25,8 @@ app.use('/api/predictions', predictionsRouter);
 app.use('/api/sentiment', sentimentRouter);
 app.use('/api/fantasy', fantasyRouter);
 app.use('/api/radio', radioRouter);
+app.use('/api/telemetry', telemetryRouter);
+app.use('/api/leagues', leaguesRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });

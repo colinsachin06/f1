@@ -12,6 +12,8 @@ import SentimentTracker from './components/tabs/SentimentTracker';
 import FantasyF1 from './components/tabs/FantasyF1';
 import RadioReplay from './components/tabs/RadioReplay';
 import PitStopChallenge from './components/tabs/PitStopChallenge';
+import Telemetry from './components/tabs/Telemetry';
+import Leagues from './components/tabs/Leagues';
 
 function App() {
   const [activeTab, setActiveTab] = useState('career');
@@ -65,6 +67,11 @@ function App() {
         return <RadioReplay />;
       case 'pitstop':
         return <PitStopChallenge />;
+      case 'telemetry':
+        return <Telemetry />;
+      case 'leagues':
+        return <Leagues />;
+
       default:
         return <CareerArc drivers={drivers} loading={loading} error={error} />;
     }

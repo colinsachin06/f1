@@ -9,7 +9,9 @@ const tabs = [
   { id: 'sentiment', label: '📊 SENTIMENT' },
   { id: 'fantasy', label: '💰 FANTASY' },
   { id: 'radio', label: '🎙 RADIO' },
-  { id: 'pitstop', label: '⏱ PIT STOP' }
+  { id: 'pitstop', label: '⏱ PIT STOP' },
+  { id: 'telemetry', label: '📡 TELEMETRY' },
+  { id: 'leagues', label: '👥 LEAGUES' }
 ];
 
 function TabNav({ activeTab, setActiveTab }) {
